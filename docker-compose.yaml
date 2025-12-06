@@ -7,6 +7,7 @@ services:
       - ./.data/redis_data:/data
     ports:
      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: ["--port", "${REDIS_PORT}"]
 
   app:
     build:
