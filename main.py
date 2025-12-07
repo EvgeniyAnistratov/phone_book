@@ -1,14 +1,26 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, status
 from fastapi.openapi.utils import get_openapi
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+from phone_book.controllers import phone_book_router
+from phone_book.redis_manager import RedisManager
 
-app = FastAPI(title="Phone book microservice")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await RedisManager.connect()
+    yield
+    await RedisManager.close()
+
+
+app = FastAPI(title="Phone book microservice", lifespan=lifespan)
+app.include_router(phone_book_router)
 
 
 @app.get("/")
-def main():
+async def main():
     return "Phone book"
 
 
