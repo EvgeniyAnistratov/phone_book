@@ -43,3 +43,45 @@ cp .env.example .env
 ```bash
 docker-compose --env-file .env up
 ```
+
+
+## Запуск приложения без docker
+Ниже описаны шаги для запуска микросервиса. Подразумевается, что Redis уже установлен
+или запущен в docker контейнере.
+
+В проекте используется менеджер пакетов и зависимостей [poetry](https://python-poetry.org/).
+
+Минимальная версия python: 3.13
+
+1. Создание виртуального окружения python
+```bash
+python3 -m venv .venv
+```
+2. Активация виртуального окружения
+```bash
+source .venv/bin/activate
+```
+3. Обновление __pip__
+```bash
+python3 -m pip install --upgrade pip
+```
+4. Установка __poetry__
+```bash
+pip install poetry
+```
+5. Может потребоваться обновить __poetry.lock__ файл
+```bash
+poetry lock
+```
+6. Установка пакетов и зависимостей
+```bash
+poetry install --no-root
+```
+7. Создание файла переменных окружения (подробно см. ["Переменные окружения"](#переменные-окружения))
+```bash
+cp .env.example .env
+```
+8. Запуск локального сервера
+```bash
+uvicorn main:app
+```
