@@ -9,7 +9,7 @@ dependencies = [
     "fastapi[standard] (>=0.123.10,<0.124.0)",
     "redis (>=7.1.0,<8.0.0)",
     "dotenv (>=0.9.9,<0.10.0)",
-    "envparse (>=0.2.0,<0.3.0)"
+    "python-utils @ git+https://github.com/EvgeniyAnistratov/python_utils.git",
 ]
 
 
