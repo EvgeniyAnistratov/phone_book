@@ -12,6 +12,8 @@ dependencies = [
     "python-utils @ git+https://github.com/EvgeniyAnistratov/python_utils.git",
 ]
 
+[tool.poetry]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
